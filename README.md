@@ -157,8 +157,9 @@
 
     <section class="feedback">
       <h3>Feedbacks</h3>
-      <p>"Nunca entendi tanto meu doguinho, obrigado Think Dog!"</p>
-      <p>"Achei que era brincadeira, mas fiquei emocionado com a sessão."</p>
+      <p>"João marcos:
+      Nunca entendi tanto meu doguinho, obrigado Think Dog!"</p>
+      <p>"mattheus pereira: Achei que era brincadeira, mas fiquei emocionado com a sessão."</p>
     </section>
 
     <section class="avaliar">
@@ -180,7 +181,12 @@
   </p>
 </section>
 
-
+<!-- Adicione este trecho antes da tag </body> -->
+<footer style="background-color:#1f1f1f; padding: 1rem; text-align: center; color: #aaa; margin-top: 2rem; font-size: 0.9rem;">
+  Think Dog Tecnologia e Comportamento Animal LTDA<br>
+  CNPJ: 12.345.678/0001-99<br>
+  Todos os direitos reservados think dog © 2025
+</footer>
 
   <script>
     let sidebar = document.getElementById("sidebar");
