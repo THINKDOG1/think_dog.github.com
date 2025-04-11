@@ -168,6 +168,20 @@
     </section>
   </main>
 
+<section id="suporte" style="margin-top: 3rem; padding: 2rem; background-color: #1f1f1f; border-radius: 10px; text-align: center;">
+  <h2 style="margin-bottom: 1rem;">Suporte Think Dog</h2>
+  <p style="margin-bottom: 1rem;">Escaneie o QR code abaixo e entre no nosso grupo de suporte no WhatsApp!</p>
+  <img src="https://i.imgur.com/vYRaF4M.png" alt="QR Code Suporte" style="width: 180px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5);" />
+  <p style="margin-top: 1rem;">
+    Ou clique direto no link: <br>
+    <a href="https://chat.whatsapp.com/EHBXUktjBP78tAGb1OpL4s" target="_blank" style="color: #8B4513; text-decoration: underline;">
+      Acessar grupo de suporte
+    </a>
+  </p>
+</section>
+
+
+
   <script>
     let sidebar = document.getElementById("sidebar");
     function toggleSidebar() {
