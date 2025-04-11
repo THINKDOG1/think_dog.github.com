@@ -113,7 +113,7 @@
 </head>
 <body>
   <header>
-    <img src="https://i.imgur.com/rG5a0Sa.png" alt="Think Dog Logo" class="logo" />
+    <img src="https://i.imgur.com/O9uEhRB.png" alt="Think Dog Logo" class="logo" />
     <div class="menu-icon" onclick="toggleSidebar()">☰</div>
   </header>
 
@@ -134,14 +134,14 @@
       </div>
       <div class="description">
         <h2>Bem-vindo à Think Dog</h2>
-        <p>Transformamos a comunicação entre humanos e cachorros. Com apoio da Fundação CDL, oferecemos sessões onde nossos profissionais traduzem os pensamentos dos cães para seus donos. Cada sessão custa R$239,99.</p>
+        <p>Transformamos a comunicação entre humanos e cachorros. Com apoio da Fundação CDL, oferecemos sessões onde nossos profissionais traduzem os pensamentos dos cães para seus donos. Cada sessão custa <strong>R$190,90</strong>.</p>
         <div class="quote">"Seu doguinho tem muito a dizer. Nós traduzimos para você entender."</div>
       </div>
     </section>
 
     <section id="servicos" class="services">
       <h3>Serviço Think Dog</h3>
-      <p>• Sessões com tradutores especializados em comportamento canino.<br>• Cada sessão: <strong>R$239,99</strong></p>
+      <p>• Sessões com tradutores especializados em comportamento canino.<br>• Cada sessão: <strong>R$190,90</strong></p>
       <button onclick="mostrarCompra()">Comprar Sessão</button>
     </section>
 
@@ -188,7 +188,7 @@
       let cupom = document.getElementById("cupom").value.trim().toUpperCase();
       let info = document.getElementById("descontoInfo");
       if (cupom === "CDL") {
-        info.innerText = "Cupom aplicado! Desconto de 50%. Novo valor: R$119,99";
+        info.innerText = "Cupom aplicado! Desconto de 20%. Novo valor: R$152,72";
       } else {
         info.innerText = "Cupom inválido.";
       }
@@ -220,5 +220,3 @@
   </script>
 </body>
 </html>
-
-
