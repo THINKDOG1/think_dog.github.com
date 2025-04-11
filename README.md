@@ -113,7 +113,7 @@
 </head>
 <body>
   <header>
-    <img src="https://i.imgur.com/O9uEhRB.png" alt="Think Dog Logo" class="logo" />
+    <img src="https://i.imgur.com/rG5a0Sa.png" alt="Think Dog Logo" class="logo" />
     <div class="menu-icon" onclick="toggleSidebar()">☰</div>
   </header>
 
