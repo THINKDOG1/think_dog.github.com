@@ -134,7 +134,7 @@
       </div>
       <div class="description">
         <h2>Bem-vindo à Think Dog</h2>
-        <p>Transformamos a comunicação entre humanos e cachorros. Com apoio da Fundação CDL, oferecemos sessões onde nossos profissionais traduzem os pensamentos dos cães para seus donos. Cada sessão custa <strong>R$190,90</strong>.</p>
+        <p>Transformamos a comunicação entre humanos e cachorros. Com apoio da Fundação CDL, oferecemos sessões onde nossos profissionais traduzem os pensamentos dos cães para seus donos. Cada sessão custa <strong>R$109,90</strong>.</p>
         <div class="quote">"Seu doguinho tem muito a dizer. Nós traduzimos para você entender."</div>
       </div>
     </section>
