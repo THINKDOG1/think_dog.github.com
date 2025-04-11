@@ -187,7 +187,101 @@
   CNPJ: 12.345.678/0001-99<br>
   Todos os direitos reservados think dog © 2025
 </footer>
+<!-- BOTÃO DE ACESSIBILIDADE -->
+<div id="acessibilidade-btn" onclick="toggleAcessibilidade()" title="Acessibilidade">
+  <img src="https://i.imgur.com/xzDXTxW.png" alt="Acessibilidade" />
+</div>
 
+<!-- MENU DE ACESSIBILIDADE -->
+<div id="acessibilidade-menu">
+  <h4>Acessibilidade</h4>
+  <button onclick="aumentarFonte()">Aumentar Fonte</button>
+  <button onclick="diminuirFonte()">Diminuir Fonte</button>
+  <button onclick="altoContraste()">Alto Contraste</button>
+</div>
+
+<style>
+  #acessibilidade-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1001;
+    cursor: pointer;
+  }
+
+  #acessibilidade-btn img {
+    width: 55px;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+
+  #acessibilidade-btn:hover img {
+    transform: scale(1.1);
+  }
+
+  #acessibilidade-menu {
+    position: fixed;
+    bottom: 90px;
+    left: 20px;
+    background: #2c2c2c;
+    padding: 1rem;
+    border-radius: 10px;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    width: 200px;
+  }
+
+  #acessibilidade-menu h4 {
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+
+  #acessibilidade-menu button {
+    display: block;
+    width: 100%;
+    margin: 0.3rem 0;
+    padding: 0.5rem;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  body.alto-contraste {
+    background-color: black !important;
+    color: yellow !important;
+  }
+
+  body.alto-contraste button {
+    background-color: yellow !important;
+    color: black !important;
+  }
+</style>
+
+<script>
+  let fonteAtual = 100;
+
+  function toggleAcessibilidade() {
+    const menu = document.getElementById("acessibilidade-menu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+
+  function aumentarFonte() {
+    fonteAtual += 10;
+    document.body.style.fontSize = fonteAtual + "%";
+  }
+
+  function diminuirFonte() {
+    fonteAtual = Math.max(70, fonteAtual - 10);
+    document.body.style.fontSize = fonteAtual + "%";
+  }
+
+  function altoContraste() {
+    document.body.classList.toggle("alto-contraste");
+  }
+</script>
   <script>
     let sidebar = document.getElementById("sidebar");
     function toggleSidebar() {
