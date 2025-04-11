@@ -141,7 +141,7 @@
 
     <section id="servicos" class="services">
       <h3>Serviço Think Dog</h3>
-      <p>• Sessões com tradutores especializados em comportamento canino.<br>• Cada sessão: <strong>R$190,90</strong></p>
+      <p>• Sessões com tradutores especializados em comportamento canino.<br>• Cada sessão: <strong>R$109,90</strong></p>
       <button onclick="mostrarCompra()">Comprar Sessão</button>
     </section>
 
