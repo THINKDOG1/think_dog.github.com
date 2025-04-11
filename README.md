@@ -181,18 +181,15 @@
   </p>
 </section>
 
-<!-- Adicione este trecho antes da tag </body> -->
 <footer style="background-color:#1f1f1f; padding: 1rem; text-align: center; color: #aaa; margin-top: 2rem; font-size: 0.9rem;">
   Think Dog Tecnologia e Comportamento Animal LTDA<br>
   CNPJ: 12.345.678/0001-99<br>
   Todos os direitos reservados think dog © 2025
 </footer>
-<!-- BOTÃO DE ACESSIBILIDADE -->
+
 <div id="acessibilidade-btn" onclick="toggleAcessibilidade()" title="Acessibilidade">
   <img src="https://i.imgur.com/xzDXTxW.png" alt="Acessibilidade" />
 </div>
-
-<!-- MENU DE ACESSIBILIDADE -->
 <div id="acessibilidade-menu">
   <h4>Acessibilidade</h4>
   <button onclick="aumentarFonte()">Aumentar Fonte</button>
@@ -208,17 +205,14 @@
     z-index: 1001;
     cursor: pointer;
   }
-
   #acessibilidade-btn img {
     width: 55px;
     height: auto;
     transition: transform 0.3s ease;
   }
-
   #acessibilidade-btn:hover img {
     transform: scale(1.1);
   }
-
   #acessibilidade-menu {
     position: fixed;
     bottom: 90px;
@@ -231,12 +225,10 @@
     box-shadow: 0 0 15px rgba(0,0,0,0.6);
     width: 200px;
   }
-
   #acessibilidade-menu h4 {
     margin-bottom: 0.5rem;
     color: #fff;
   }
-
   #acessibilidade-menu button {
     display: block;
     width: 100%;
@@ -248,12 +240,10 @@
     border-radius: 5px;
     cursor: pointer;
   }
-
   body.alto-contraste {
     background-color: black !important;
     color: yellow !important;
   }
-
   body.alto-contraste button {
     background-color: yellow !important;
     color: black !important;
@@ -262,75 +252,69 @@
 
 <script>
   let fonteAtual = 100;
-
   function toggleAcessibilidade() {
     const menu = document.getElementById("acessibilidade-menu");
     menu.style.display = menu.style.display === "block" ? "none" : "block";
   }
-
   function aumentarFonte() {
     fonteAtual += 10;
     document.body.style.fontSize = fonteAtual + "%";
   }
-
   function diminuirFonte() {
     fonteAtual = Math.max(70, fonteAtual - 10);
     document.body.style.fontSize = fonteAtual + "%";
   }
-
   function altoContraste() {
     document.body.classList.toggle("alto-contraste");
   }
 </script>
-  <script>
-    let sidebar = document.getElementById("sidebar");
-    function toggleSidebar() {
-      sidebar.classList.toggle("show");
+<script>
+  let sidebar = document.getElementById("sidebar");
+  function toggleSidebar() {
+    sidebar.classList.toggle("show");
+  }
+  function toggleTheme() {
+    document.body.classList.toggle("light");
+    document.getElementById("themeToggle").innerText =
+      document.body.classList.contains("light") ? "Tema Escuro" : "Tema Claro";
+  }
+  function mostrarCompra() {
+    document.getElementById("compra").style.display = "block";
+  }
+  function aplicarDesconto() {
+    let cupom = document.getElementById("cupom").value.trim().toUpperCase();
+    let info = document.getElementById("descontoInfo");
+    if (cupom === "CDL") {
+      info.innerText = "Cupom aplicado! Desconto de 20%. Novo valor: R$87,92";
+    } else {
+      info.innerText = "Cupom inválido.";
     }
-
-    function toggleTheme() {
-      document.body.classList.toggle("light");
-      document.getElementById("themeToggle").innerText =
-        document.body.classList.contains("light") ? "Tema Escuro" : "Tema Claro";
-    }
-
-    function mostrarCompra() {
-      document.getElementById("compra").style.display = "block";
-    }
-
-    function aplicarDesconto() {
-      let cupom = document.getElementById("cupom").value.trim().toUpperCase();
-      let info = document.getElementById("descontoInfo");
-      if (cupom === "CDL") {
-        info.innerText = "Cupom aplicado! Desconto de 20%. Novo valor: R$152,72";
-      } else {
-        info.innerText = "Cupom inválido.";
+  }
+  function gerarQR() {
+    let container = document.getElementById("qrcode");
+    container.innerHTML = "";
+    QRCode.toCanvas(document.createElement("canvas"), "Pagamento Think Dog", { width: 150 }, function (err, canvas) {
+      container.appendChild(canvas);
+    });
+    iniciarContagem();
+  }
+  function iniciarContagem() {
+    let tempo = 20 * 60;
+    let timer = document.getElementById("timer");
+    let intervalo = setInterval(() => {
+      let minutos = Math.floor(tempo / 60);
+      let segundos = tempo % 60;
+      timer.innerText = `QR code expira em ${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
+      tempo--;
+      if (tempo < 0) {
+        clearInterval(intervalo);
+        timer.innerText = "QR code expirado.";
       }
-    }
-
-    function gerarQR() {
-      let container = document.getElementById("qrcode");
-      container.innerHTML = "";
-      QRCode.toCanvas(document.createElement("canvas"), "Pagamento Think Dog", { width: 150 }, function (err, canvas) {
-        container.appendChild(canvas);
-      });
-      iniciarContagem();
-    }
-
-    function iniciarContagem() {
-      let tempo = 20 * 60;
-      let timer = document.getElementById("timer");
-      let intervalo = setInterval(() => {
-        let minutos = Math.floor(tempo / 60);
-        let segundos = tempo % 60;
-        timer.innerText = `QR code expira em ${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
-        tempo--;
-        if (tempo < 0) {
-          clearInterval(intervalo);
-          timer.innerText = "QR code expirado.";
-        }
-      }, 1000);
-    }
-  </script>
+    }, 1000);
+  }
+</script>
 </body>
 </html>
+
+
+
