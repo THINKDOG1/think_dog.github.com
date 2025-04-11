@@ -1,254 +1,224 @@
-
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Think Dog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
-    :root {
-      --bg: #f5f5f5;
-      --text: #333;
-      --card: #fff;
-      --accent: #4b3621;
-    }
-    body.dark {
-      --bg: #1e1e1e;
-      --text: #f5f5f5;
-      --card: #2a2a2a;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+    body {
+      background-color: #121212;
+      color: #f0f0f0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.light {
+      background-color: #ffffff;
+      color: #121212;
     }
     header {
-      background-color: var(--card);
-      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 1rem;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
-    .menu-button {
-      font-size: 24px;
-      background: none;
-      border: none;
+    .logo {
+      height: 50px;
+    }
+    .menu-icon {
       cursor: pointer;
-      color: var(--text);
+      font-size: 2rem;
     }
-    nav {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background-color: var(--card);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      border-radius: 8px;
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #1f1f1f;
+      transition: right 0.3s;
+      z-index: 999;
+      padding: 2rem 1rem;
     }
-    nav a {
-      padding: 10px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: bold;
+    .sidebar.show {
+      right: 0;
     }
-    nav a:hover {
-      color: var(--accent);
+    .sidebar ul {
+      list-style: none;
     }
-    .store {
-      max-width: 960px;
+    .sidebar ul li {
+      margin: 1rem 0;
+    }
+    main {
+      padding: 6rem 2rem 2rem;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 20px;
     }
-    .banner {
-      background: linear-gradient(to right, #4b3621, #2f2f2f);
-      color: white;
-      padding: 30px;
-      text-align: center;
-      border-radius: 12px;
-    }
-    .product, .about {
-      background: var(--card);
-      margin-top: 20px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .product {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-    .product img {
-      width: 300px;
-      border-radius: 12px;
+    .img-box img {
+      max-width: 100%;
+      border-radius: 1rem;
       transition: transform 0.3s ease;
     }
-    .product img:hover {
-      transform: perspective(800px) rotateY(10deg) rotateX(5deg);
+    .img-box img:hover {
+      transform: rotateY(10deg);
+    }
+    .description, .services, .feedback, .avaliar {
+      margin: 2rem 0;
+    }
+    .quote {
+      background-color: #333;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+    .compra {
+      display: none;
+      margin-top: 2rem;
+    }
+    .qr-container {
+      margin-top: 1rem;
     }
     button {
-      background-color: var(--accent);
-      color: white;
+      padding: 0.7rem 1.2rem;
       border: none;
-      padding: 10px 16px;
-      border-radius: 6px;
+      border-radius: 5px;
+      background-color: #8B4513;
+      color: white;
       cursor: pointer;
-      margin: 5px;
+      margin-top: 1rem;
     }
-    button:hover {
-      background-color: #6f4e37;
+    input[type="text"] {
+      padding: 0.5rem;
+      margin-right: 0.5rem;
     }
-    #cart-box, #confirmation, #qrcode-box {
-      display: none;
-      background-color: var(--card);
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    #extras {
-      display: none;
-    }
-    #discount-message, #confirmation p {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    #countdown {
-      color: red;
-      font-weight: bold;
+    .feedback p {
+      background: #2c2c2c;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem 0;
+      border-left: 4px solid #8B4513;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://i.imgur.com/p9fncHI.png" alt="Logo Think Dog" style="height: 80px;">
-    <button class="menu-button" onclick="toggleMenu()">☰</button>
-    <nav id="nav-menu">
-      <a href="#">Início</a>
-      <a href="#product">Serviços</a>
-      <a href="#about">Sobre</a>
-      <a href="#suporte">Suporte</a>
-      <a href="#" onclick="toggleTheme()">Tema</a>
-    </nav>
+    <img src="https://i.imgur.com/rG5a0Sa.png" alt="Think Dog Logo" class="logo" />
+    <div class="menu-icon" onclick="toggleSidebar()">☰</div>
   </header>
 
-  <div class="store">
-    <div class="banner">
-      <h1>Think Dog</h1>
-      <h2>Traduzimos o que seu cachorro sente, pensa e deseja</h2>
-    </div>
-
-    <div class="product" id="product">
-      <img src="https://i.imgur.com/iauKggv.jpeg" alt="Serviço Think Dog">
-      <div class="product-details">
-        <h3>Serviço Think Dog</h3>
-        <p>Cada sessão tem o valor de <strong>R$ 239,99</strong>. Envie vídeos ou imagens do seu pet e nossa equipe de especialistas traduzirá o que ele quer comunicar!</p>
-        <button onclick="showExtras()">Quero contratar</button>
-      </div>
-
-      <div id="extras">
-        <label for="discount">Código de Desconto:</label>
-        <input type="text" id="discount" placeholder="Digite seu código">
-        <button onclick="applyDiscount()">Aplicar código</button>
-        <div id="discount-message"></div>
-        <button onclick="addToCart()">Adicionar ao carrinho</button>
-        <button onclick="buyNow()">Comprar agora</button>
-        <div id="cart-box">
-          <p>Itens no carrinho: <span id="cart-count">0</span></p>
-          <p>Total: R$ <span id="cart-total">0.00</span></p>
-          <button onclick="finalizePurchase()">Finalizar compra</button>
-        </div>
-        <div id="confirmation"></div>
-        <div id="qrcode-box">
-          <p>QR Code de pagamento (expira em <span id="countdown">20:00</span>):</p>
-          <img src="https://api.qrserver.com/v1/create-qr-code/?data=PagamentoThinkDog&size=200x200" alt="QR Code" style="width: 120px; height: 120px;">
-      </div>
-
-    <section class="about" id="about">
-      <h3>Sobre a Think Dog</h3>
-      <p>A <strong>Think Dog</strong> é uma empresa apaixonada por tecnologia e pets. Nosso serviço principal oferece tradução comportamental dos sentimentos e pensamentos do seu cachorro por meio de especialistas qualificados.</p>
-      <h4>Apoie a Adoção de Cães</h4>
-      <p>Parte da renda das vendas é destinada a ONGs de resgate. Incentivamos a adoção responsável.</p>
-      <h4>Parceria com a Fundação CDL</h4>
-      <p>Com apoio da <strong>Fundação CDL</strong>, promovemos bem-estar animal com tecnologia e empatia.</p>
-    </section>
-
-    <section class="about" id="suporte">
-      <h3>Suporte</h3>
-      <p>Em caso de dúvidas ou problemas com sua compra, entre em contato com nosso suporte via WhatsApp:</p>
-      <p><a href="https://chat.whatsapp.com/EHBXUktjBP78tAGb1OpL4s" target="_blank">Entrar no grupo de suporte</a></p>
-    </section>
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#comprar">Comprar</a></li>
+      <li><a href="https://chat.whatsapp.com/EHBXUktjBP78tAGb1OpL4s" target="_blank">Suporte</a></li>
+      <li><button onclick="toggleTheme()" id="themeToggle">Tema Claro</button></li>
+    </ul>
   </div>
 
+  <main>
+    <section id="inicio">
+      <div class="img-box">
+        <img src="https://i.imgur.com/iauKggv.jpeg" alt="Cachorro Fofo" />
+      </div>
+      <div class="description">
+        <h2>Bem-vindo à Think Dog</h2>
+        <p>Transformamos a comunicação entre humanos e cachorros. Com apoio da Fundação CDL, oferecemos sessões onde nossos profissionais traduzem os pensamentos dos cães para seus donos. Cada sessão custa R$239,99.</p>
+        <div class="quote">"Seu doguinho tem muito a dizer. Nós traduzimos para você entender."</div>
+      </div>
+    </section>
+
+    <section id="servicos" class="services">
+      <h3>Serviço Think Dog</h3>
+      <p>• Sessões com tradutores especializados em comportamento canino.<br>• Cada sessão: <strong>R$239,99</strong></p>
+      <button onclick="mostrarCompra()">Comprar Sessão</button>
+    </section>
+
+    <section class="compra" id="compra">
+      <h3>Finalizar Compra</h3>
+      <input type="text" id="cupom" placeholder="Digite o código de desconto">
+      <button onclick="aplicarDesconto()">Confirmar Cupom</button>
+      <div id="descontoInfo"></div>
+      <button onclick="gerarQR()">Pagamento</button>
+      <div id="qrcode" class="qr-container"></div>
+      <div id="timer"></div>
+    </section>
+
+    <section class="feedback">
+      <h3>Feedbacks</h3>
+      <p>"Nunca entendi tanto meu doguinho, obrigado Think Dog!"</p>
+      <p>"Achei que era brincadeira, mas fiquei emocionado com a sessão."</p>
+    </section>
+
+    <section class="avaliar">
+      <h3>Avalie nosso site</h3>
+      <input type="text" placeholder="Digite seu feedback..." />
+      <button>Enviar</button>
+    </section>
+  </main>
+
   <script>
-    let cartCount = 0;
-    let cartTotal = 0;
-    let discountApplied = false;
-    let timerInterval;
+    let sidebar = document.getElementById("sidebar");
+    function toggleSidebar() {
+      sidebar.classList.toggle("show");
+    }
 
     function toggleTheme() {
-      document.body.classList.toggle('dark');
+      document.body.classList.toggle("light");
+      document.getElementById("themeToggle").innerText =
+        document.body.classList.contains("light") ? "Tema Escuro" : "Tema Claro";
     }
-    function toggleMenu() {
-      const nav = document.getElementById('nav-menu');
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+
+    function mostrarCompra() {
+      document.getElementById("compra").style.display = "block";
     }
-    function showExtras() {
-      document.getElementById('extras').style.display = 'block';
-    }
-    function applyDiscount() {
-      const code = document.getElementById('discount').value.trim().toUpperCase();
-      const message = document.getElementById('discount-message');
-      if (code === 'CDL') {
-        discountApplied = true;
-        message.innerText = "Desconto de 50% aplicado com sucesso!";
-        message.style.color = "green";
+
+    function aplicarDesconto() {
+      let cupom = document.getElementById("cupom").value.trim().toUpperCase();
+      let info = document.getElementById("descontoInfo");
+      if (cupom === "CDL") {
+        info.innerText = "Cupom aplicado! Desconto de 50%. Novo valor: R$119,99";
       } else {
-        discountApplied = false;
-        message.innerText = "Código inválido ou expirado.";
-        message.style.color = "red";
+        info.innerText = "Cupom inválido.";
       }
     }
-    function addToCart() {
-      let price = 239.99;
-      if (discountApplied) price *= 0.5;
-      cartCount++;
-      cartTotal += price;
-      document.getElementById('cart-count').innerText = cartCount;
-      document.getElementById('cart-total').innerText = cartTotal.toFixed(2);
-      document.getElementById('cart-box').style.display = 'block';
+
+    function gerarQR() {
+      let container = document.getElementById("qrcode");
+      container.innerHTML = "";
+      QRCode.toCanvas(document.createElement("canvas"), "Pagamento Think Dog", { width: 150 }, function (err, canvas) {
+        container.appendChild(canvas);
+      });
+      iniciarContagem();
     }
-    function buyNow() {
-      addToCart();
-    }
-    function finalizePurchase() {
-      document.getElementById('confirmation').innerHTML = '<p>Compra finalizada com sucesso! Seu QR Code de pagamento está abaixo:</p>';
-      document.getElementById('confirmation').style.display = 'block';
-      document.getElementById('qrcode-box').style.display = 'block';
-      startCountdown();
-    }
-    function startCountdown() {
-      let duration = 20 * 60;
-      const countdownEl = document.getElementById('countdown');
-      clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        let minutes = Math.floor(duration / 60);
-        let seconds = duration % 60;
-        countdownEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        if (--duration < 0) {
-          clearInterval(timerInterval);
-          countdownEl.textContent = 'Expirado';
+
+    function iniciarContagem() {
+      let tempo = 20 * 60;
+      let timer = document.getElementById("timer");
+      let intervalo = setInterval(() => {
+        let minutos = Math.floor(tempo / 60);
+        let segundos = tempo % 60;
+        timer.innerText = `QR code expira em ${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
+        tempo--;
+        if (tempo < 0) {
+          clearInterval(intervalo);
+          timer.innerText = "QR code expirado.";
         }
       }, 1000);
     }
   </script>
-
+</body>
+</html>
 
 
