@@ -1,320 +1,297 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Think Dog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manual do Alpha Moderno</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
+      scroll-behavior: smooth;
+      font-family: 'Montserrat', sans-serif;
     }
+
     body {
-      background-color: #121212;
-      color: #f0f0f0;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    body.light {
-      background-color: #ffffff;
-      color: #121212;
-    }
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: #000;
       color: white;
-      padding: 1rem;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
-    .logo {
-      height: 50px;
+
+    /* TOPO */
+    .top-bar {
+      background: linear-gradient(to right, #3d0066, #6e00b3);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 14px;
     }
-    .menu-icon {
+
+    .hero {
+      background: linear-gradient(135deg, #000, #111, #222);
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: 3.5rem;
+      color: #b45eff;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .hero .frase {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .btn, .btn-destaque {
+      background-color: #b45eff;
+      color: #000;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
       cursor: pointer;
-      font-size: 2rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
     }
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: -250px;
-      width: 250px;
-      height: 100%;
-      background-color: #1f1f1f;
-      transition: right 0.3s;
-      z-index: 999;
-      padding: 2rem 1rem;
+
+    .btn:hover, .btn-destaque:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #b45eff;
     }
-    .sidebar.show {
-      right: 0;
+
+    .btn-destaque {
+      font-size: 1.2rem;
+      padding: 20px 40px;
+      border-radius: 40px;
+      display: inline-block;
     }
-    .sidebar ul {
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #b45eff;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .modulos ul {
       list-style: none;
-    }
-    .sidebar ul li {
-      margin: 1rem 0;
-    }
-    main {
-      padding: 6rem 2rem 2rem;
-      max-width: 1000px;
+      max-width: 600px;
       margin: 0 auto;
     }
-    .img-box img {
-      max-width: 100%;
-      border-radius: 1rem;
-      transition: transform 0.3s ease;
+
+    .modulos li {
+      background-color: #222;
+      margin: 10px 0;
+      padding: 15px;
+      border-left: 5px solid #b45eff;
+      border-radius: 10px;
     }
-    .img-box img:hover {
-      transform: rotateY(10deg);
+
+    .card {
+      background: #1a1a1a;
+      padding: 20px;
+      margin: 15px auto;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #000;
     }
-    .description, .services, .feedback, .avaliar {
-      margin: 2rem 0;
+
+    .card p {
+      font-style: italic;
+      margin-bottom: 10px;
     }
-    .quote {
-      background-color: #333;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-top: 1rem;
+
+    .card span {
+      color: #b45eff;
+      font-weight: bold;
     }
-    .compra {
-      display: none;
-      margin-top: 2rem;
+
+    .cta {
+      background: #000;
+      padding: 80px 20px;
     }
-    .qr-container {
-      margin-top: 1rem;
+
+    .imagem-curso {
+      margin-top: 30px;
     }
-    button {
-      padding: 0.7rem 1.2rem;
-      border: none;
-      border-radius: 5px;
-      background-color: #8B4513;
-      color: white;
-      cursor: pointer;
-      margin-top: 1rem;
+
+    .imagem-curso img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    input[type="text"] {
-      padding: 0.5rem;
-      margin-right: 0.5rem;
+
+    .imagem-curso img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px #b45eff;
     }
-    .feedback p {
-      background: #2c2c2c;
-      padding: 0.5rem 1rem;
-      margin: 0.5rem 0;
-      border-left: 4px solid #8B4513;
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 10px #25D366;
+    }
+
+    footer {
+      background: #0d0d0d;
+      padding: 30px;
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    /* EFEITO ANIMAÇÃO */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .box {
+      background-color: #0a0a0a;
+      border: 1px solid #8000ff;
+      border-radius: 12px;
+      padding: 25px 15px;
+      margin: 25px auto;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 0 15px #8000ff50;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .box-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .box p {
+      font-size: 18px;
+      font-weight: bold;
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: fadeText 1s ease forwards;
+      animation-delay: 0.4s;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeText {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://i.imgur.com/O9uEhRB.png" alt="Think Dog Logo" class="logo" />
-    <div class="menu-icon" onclick="toggleSidebar()">☰</div>
-  </header>
+  <div class="top-bar">5 VIDEO AULAS EXCLUSIVAS HOJE</div>
 
-  <div class="sidebar" id="sidebar">
+  <section class="hero fade-up">
+    <h1>Manual do Alpha Moderno</h1>
+    <p class="frase">Torne-se o homem que impõe respeito em silêncio e atrai olhares sem esforço.</p>
+    <a href="#sobre" class="btn">Descubra Agora</a>
+  </section>
+
+  <section id="sobre" class="sobre fade-up">
+    <h2>O que é o Manual do Alpha Moderno?</h2>
+    <p>Um curso completo voltado para iniciantes no desenvolvimento pessoal, físico e mental. Transforme sua vida com técnicas práticas e estratégias para se tornar um homem mais confiante, influente e naturalmente atraente.</p>
+    <div class="imagem-curso fade-up">
+      <a href="https://bit.ly/Mentor_alpha2" target="_blank">
+        <img src="https://i.imgur.com/MkvuXvw.png" alt="Manual do Alpha Moderno" />
+      </a>
+    </div>
+  </section>
+
+  <section class="modulos fade-up">
+    <h2>O que você vai aprender:</h2>
     <ul>
-      <li><a href="#inicio">Início</a></li>
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#comprar">Comprar</a></li>
-      <li><a href="https://chat.whatsapp.com/EHBXUktjBP78tAGb1OpL4s" target="_blank">Suporte</a></li>
-      <li><button onclick="toggleTheme()" id="themeToggle">Tema Claro</button></li>
+      <li class="fade-up">Autoconfiança e linguagem corporal</li>
+      <li class="fade-up">Estilo e aparência pessoal</li>
+      <li class="fade-up">Controle emocional e mentalidade</li>
+      <li class="fade-up">Como atrair mulheres naturalmente</li>
+      <li class="fade-up">Liderança, disciplina e hábitos</li>
     </ul>
-  </div>
+  </section>
 
-  <main>
-    <section id="inicio">
-      <div class="img-box">
-        <img src="https://i.imgur.com/iauKggv.jpeg" alt="Cachorro Fofo" />
-      </div>
-      <div class="description">
-        <h2>Bem-vindo à Think Dog</h2>
-        <p>Transformamos a comunicação entre humanos e cachorros. Com apoio da Fundação CDL, oferecemos sessões onde nossos profissionais traduzem os pensamentos dos cães para seus donos. Cada sessão custa <strong>R$109,90</strong>.</p>
-        <div class="quote">"Seu doguinho tem muito a dizer. Nós traduzimos para você entender."</div>
-      </div>
-    </section>
+  <section class="depoimentos fade-up">
+    <h2>Transformações reais</h2>
+    <div class="card fade-up">
+      <p>"Depois que apliquei o que aprendi aqui, minha postura mudou totalmente. As pessoas me tratam diferente."</p>
+      <span>— João M.</span>
+    </div>
+    <div class="card fade-up">
+      <p>"Nunca imaginei que com simples mudanças de atitude eu chamaria tanta atenção sem dizer nada."</p>
+      <span>— Rafael D.</span>
+    </div>
+  </section>
 
-    <section id="servicos" class="services">
-      <h3>Serviço Think Dog</h3>
-      <p>• Sessões com tradutores especializados em comportamento canino.<br>• Cada sessão: <strong>R$109,90</strong></p>
-      <button onclick="mostrarCompra()">Comprar Sessão</button>
-    </section>
+  <section class="cta fade-up">
+    <h2>Pronto para sua transformação?</h2>
+    <a href="https://bit.ly/Mentor_alpha2" class="btn-destaque">Acessar Agora (R$ ???)</a>
+  </section>
 
-    <section class="compra" id="compra">
-      <h3>Finalizar Compra</h3>
-      <input type="text" id="cupom" placeholder="Digite o código de desconto">
-      <button onclick="aplicarDesconto()">Confirmar Cupom</button>
-      <div id="descontoInfo"></div>
-      <button onclick="gerarQR()">Pagamento</button>
-      <div id="qrcode" class="qr-container"></div>
-      <div id="timer"></div>
-    </section>
+  <div class="box"><div class="box-icon">✖️</div><p>Não sabe como ter assuntos interessantes com uma mulher.</p></div>
+  <div class="box"><div class="box-icon">📴</div><p>Só fica no vácuo e não consegue entender o real motivo.</p></div>
+  <div class="box"><div class="box-icon">💬❌</div><p>Não consegue despertar desejo e muito menos o interesse sexual em uma mulher</p></div>
+  <div class="box"><div class="box-icon">😬</div><p>Tem falta de autoestima e confiança.</p></div>
+  <div class="box"><div class="box-icon">🙈</div><p>Tem medo de ser julgado e ridicularizado pelos seus amigos e pela sociedade.</p></div>
+  <div class="box"><div class="box-icon">💔</div><p>Tem a vida sexual limitada e isso está acabando com a sua saúde mental e emocional.</p></div>
 
-    <section class="feedback">
-      <h3>Feedbacks</h3>
-      <p>"João marcos:
-      Nunca entendi tanto meu doguinho, obrigado Think Dog!"</p>
-      <p>"mattheus pereira: Achei que era brincadeira, mas fiquei emocionado com a sessão."</p>
-    </section>
+  <a class="whatsapp-btn" href="https://wa.me/5587982022078" target="_blank">Fale com a gente</a>
 
-    <section class="avaliar">
-      <h3>Avalie nosso site</h3>
-      <input type="text" placeholder="Digite seu feedback..." />
-      <button>Enviar</button>
-    </section>
-  </main>
+  <footer class="fade-up">
+    <p>By Apoenno Rodrigues</p>
+    <p>© 2025 Manual do Alpha Moderno. Todos os direitos reservados.</p>
+  </footer>
 
-<section id="suporte" style="margin-top: 3rem; padding: 2rem; background-color: #1f1f1f; border-radius: 10px; text-align: center;">
-  <h2 style="margin-bottom: 1rem;">Suporte Think Dog</h2>
-  <p style="margin-bottom: 1rem;">Escaneie o QR code abaixo e entre no nosso grupo de suporte no WhatsApp!</p>
-  <img src="https://i.imgur.com/vYRaF4M.png" alt="QR Code Suporte" style="width: 180px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5);" />
-  <p style="margin-top: 1rem;">
-    Ou clique direto no link: <br>
-    <a href="https://chat.whatsapp.com/EHBXUktjBP78tAGb1OpL4s" target="_blank" style="color: #8B4513; text-decoration: underline;">
-      Acessar grupo de suporte
-    </a>
-  </p>
-</section>
+  <script>
+    const elements = document.querySelectorAll('.fade-up');
 
-<footer style="background-color:#1f1f1f; padding: 1rem; text-align: center; color: #aaa; margin-top: 2rem; font-size: 0.9rem;">
-  Think Dog Tecnologia e Comportamento Animal LTDA<br>
-  CNPJ: 12.345.678/0001-99<br>
-  Todos os direitos reservados think dog © 2025
-</footer>
+    function showOnScroll() {
+      const trigger = window.innerHeight * 0.9;
 
-<div id="acessibilidade-btn" onclick="toggleAcessibilidade()" title="Acessibilidade">
-  <img src="https://i.imgur.com/xzDXTxW.png" alt="Acessibilidade" />
-</div>
-<div id="acessibilidade-menu">
-  <h4>Acessibilidade</h4>
-  <button onclick="aumentarFonte()">Aumentar Fonte</button>
-  <button onclick="diminuirFonte()">Diminuir Fonte</button>
-  <button onclick="altoContraste()">Alto Contraste</button>
-</div>
-
-<style>
-  #acessibilidade-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1001;
-    cursor: pointer;
-  }
-  #acessibilidade-btn img {
-    width: 55px;
-    height: auto;
-    transition: transform 0.3s ease;
-  }
-  #acessibilidade-btn:hover img {
-    transform: scale(1.1);
-  }
-  #acessibilidade-menu {
-    position: fixed;
-    bottom: 90px;
-    left: 20px;
-    background: #2c2c2c;
-    padding: 1rem;
-    border-radius: 10px;
-    display: none;
-    z-index: 1000;
-    box-shadow: 0 0 15px rgba(0,0,0,0.6);
-    width: 200px;
-  }
-  #acessibilidade-menu h4 {
-    margin-bottom: 0.5rem;
-    color: #fff;
-  }
-  #acessibilidade-menu button {
-    display: block;
-    width: 100%;
-    margin: 0.3rem 0;
-    padding: 0.5rem;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  body.alto-contraste {
-    background-color: black !important;
-    color: yellow !important;
-  }
-  body.alto-contraste button {
-    background-color: yellow !important;
-    color: black !important;
-  }
-</style>
-
-<script>
-  let fonteAtual = 100;
-  function toggleAcessibilidade() {
-    const menu = document.getElementById("acessibilidade-menu");
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-  }
-  function aumentarFonte() {
-    fonteAtual += 10;
-    document.body.style.fontSize = fonteAtual + "%";
-  }
-  function diminuirFonte() {
-    fonteAtual = Math.max(70, fonteAtual - 10);
-    document.body.style.fontSize = fonteAtual + "%";
-  }
-  function altoContraste() {
-    document.body.classList.toggle("alto-contraste");
-  }
-</script>
-<script>
-  let sidebar = document.getElementById("sidebar");
-  function toggleSidebar() {
-    sidebar.classList.toggle("show");
-  }
-  function toggleTheme() {
-    document.body.classList.toggle("light");
-    document.getElementById("themeToggle").innerText =
-      document.body.classList.contains("light") ? "Tema Escuro" : "Tema Claro";
-  }
-  function mostrarCompra() {
-    document.getElementById("compra").style.display = "block";
-  }
-  function aplicarDesconto() {
-    let cupom = document.getElementById("cupom").value.trim().toUpperCase();
-    let info = document.getElementById("descontoInfo");
-    if (cupom === "CDL") {
-      info.innerText = "Cupom aplicado! Desconto de 20%. Novo valor: R$87,92";
-    } else {
-      info.innerText = "Cupom inválido.";
+      elements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < trigger) {
+          el.classList.add('visible');
+        }
+      });
     }
-  }
-  function gerarQR() {
-    let container = document.getElementById("qrcode");
-    container.innerHTML = "";
-    QRCode.toCanvas(document.createElement("canvas"), "Pagamento Think Dog", { width: 150 }, function (err, canvas) {
-      container.appendChild(canvas);
-    });
-    iniciarContagem();
-  }
-  function iniciarContagem() {
-    let tempo = 20 * 60;
-    let timer = document.getElementById("timer");
-    let intervalo = setInterval(() => {
-      let minutos = Math.floor(tempo / 60);
-      let segundos = tempo % 60;
-      timer.innerText = `QR code expira em ${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
-      tempo--;
-      if (tempo < 0) {
-        clearInterval(intervalo);
-        timer.innerText = "QR code expirado.";
-      }
-    }, 1000);
-  }
-</script>
+
+    window.addEventListener('scroll', showOnScroll);
+    window.addEventListener('load', showOnScroll);
+  </script>
 </body>
 </html>
-
-
-
