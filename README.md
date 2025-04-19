@@ -218,7 +218,6 @@
   }
 }
   </style>
-</head>
 <body>
 
   <div id="welcome">
@@ -286,8 +285,8 @@
 <h1 class="title"></h1>
 <p class="quote"></p></header>
   <div style="text-align: center; padding: 10px;">
-  <img src="https://i.imgur.com/eAqHQxs.png" alt="Logo Manos Barber's" style="max-width: 200px; height: auto;">
-    </div
+  <img src="https://i.imgur.com/vqFv8m7.jpeg" alt="Logo Manos Barber's" style="max-width: 200px; height: auto;">
+  </div
 <style>
     
 </style>
@@ -822,5 +821,3 @@ function enterSite() {
     }
     
   </script>
-</body>
-</html>
