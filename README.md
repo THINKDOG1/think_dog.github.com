@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
@@ -216,6 +216,37 @@
     }
   
   }
+}/* LISTRA PRETA NO TOPO E LATERAIS */
+.listra-preta {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: black;
+  z-index: 1000;
+}
+
+.listra-preta::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color: black;
+  z-index: 1000;
+}
+
+.listra-preta::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  background-color: black;
+  z-index: 1000;
 }
   </style>
 <body>
@@ -541,6 +572,7 @@
     <img src="https://i.imgur.com/QPLgNgp.jpeg" alt="Localização da Barbearia" style="width: 100%; max-width: 500px; border-radius: 10px;">
   </a>
 </section>
+    <div class="listra-preta"></div>
     <!-- Carrossel de Cortes de Cabelo -->
 <div class="carrossel-container">
   <div class="carrossel">
